@@ -10,9 +10,5 @@ foreach($db as $key => $value) {
 }
 
 $connection = mysqli_connect(DB_HOST,DB_USER,DB_PASS,DB_NAME);
-// $connection = mysqli_connect('localhost','root','','cms');
-if($connection){
-    echo "Database connection ok";
-}
 
 ?>
