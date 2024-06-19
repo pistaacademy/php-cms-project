@@ -1,6 +1,6 @@
 <?php 
 
-function confirm($result) {
+function confirmQuery($result) {
     global $connection;
     if(!$result){
         die("Query Faild" . mysqli_error($connection));
