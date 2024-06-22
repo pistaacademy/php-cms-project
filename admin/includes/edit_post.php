@@ -53,6 +53,7 @@ if(isset($_POST['update_post'])) {
     $update_post = mysqli_query($connection, $query);
 
     confirmQuery($update_post);
+    header("Location: posts.php");
 }
 ?>
 
