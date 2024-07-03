@@ -94,47 +94,36 @@
                 <hr>
 
                 <!-- Posted Comments -->
+                 
+                <?php 
+                    $query = "SELECT * FROM comments WHERE comment_post_id = {$the_post_id} AND comment_status = 'approve' ORDER BY comment_id DESC";
+                    $select_comment_query =mysqli_query($connection, $query);
+                    if(!$select_comment_query){
+                        die('Query Failed' . mysqli_error($connection));
+                    }
+                    while($row = mysqli_fetch_assoc($select_comment_query)){
+                        $comment_date = $row['comment_date'];
+                        $comment_content = $row['comment_content'];
+                        $comment_author = $row['comment_author'];
+                ?>
 
                 <!-- Comment -->
-                <div class="media">
-                    <a class="pull-left" href="#">
-                        <img class="media-object" src="http://placehold.it/64x64" alt="">
+                 <div class="media">
+                    <a href="#" class="pull-left">
+                        <img src="https://static.wixstatic.com/media/ffb211_aafe29b263b04adc9e54cf3779edd14a~mv2.png/v1/fill/w_54,h_54,al_c,q_85,usm_0.66_1.00_0.01/ffb211_aafe29b263b04adc9e54cf3779edd14a~mv2.webp" alt="" class="media-object">
                     </a>
                     <div class="media-body">
-                        <h4 class="media-heading">Start Bootstrap
-                            <small>August 25, 2024 at 9:30 PM</small>
+                        <h4 class="media-heading">
+                            <?php echo $comment_author; ?>
+                            <small><?php echo $comment_date; ?></small>
                         </h4>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                        <?php echo $comment_content; ?>
                     </div>
-                </div>
+                 </div>
 
-                <!-- Comment -->
-                <div class="media">
-                    <a class="pull-left" href="#">
-                        <img class="media-object" src="http://placehold.it/64x64" alt="">
-                    </a>
-                    <div class="media-body">
-                        <h4 class="media-heading">Start Bootstrap
-                            <small>August 25, 2023 at 9:30 PM</small>
-                        </h4>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                        <!-- Nested Comment -->
-                        <div class="media">
-                            <a class="pull-left" href="#">
-                                <img class="media-object" src="http://placehold.it/64x64" alt="">
-                            </a>
-                            <div class="media-body">
-                                <h4 class="media-heading">Nested Start Bootstrap
-                                    <small>August 25, 2022 at 9:30 PM</small>
-                                </h4>
-                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                            </div>
-                        </div>
-                        <!-- End Nested Comment -->
-                    </div>
-                </div>
-
-               
+                <?php
+                    }
+                ?>
             </div>
 
             <!-- Blog Sidebar Widgets Column -->
