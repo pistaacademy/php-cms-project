@@ -87,6 +87,21 @@ if(isset($_POST['update_post'])) {
         <input value="<?php echo $post_status ?>" type="text" class="form-control" name="post_status">
     </div>
     <div class="form-group">
+        <select name="post_category" id="">
+            <?php 
+                $query = "SELECT * FROM categories";
+                $select_categories = mysqli_query($connection, $query);
+                confirmQuery($select_categories);
+                while($row = mysqli_fetch_assoc($select_categories)) {
+                    $cat_id = $row['cat_id'];
+                    $cat_title = $row['cat_title'];
+
+                    echo "<option value='{$cat_id}'>{$cat_title}</option>";
+                }
+            ?>
+        </select>
+    </div>
+    <div class="form-group">
         <img width="100" src="../images/<?php echo $post_image; ?>" alt="<?php echo $post_title; ?>">
         <input type="file" name="post_image">
     </div>
