@@ -137,7 +137,50 @@
         </div>
     </div>
 </div>
+
+<?php 
+
+    $query = "SELECT * FROM comments WHERE comment_status = 'approve' ";
+    $approved_comments_query = mysqli_query($connection, $query);
+    $approved_comment_count = mysqli_num_rows($approved_comments_query);
+
+?>
                 <!-- /.row -->
+                 <div class="row">
+                 <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['Data', 'Count'],
+            <?php 
+                $element_text = ['Active Posts', 'Comments','Approve Comment', 'Users','Categories'];
+                $element_count = [$post_count, $comment_count,$approved_comment_count, $user_count, $category_count];
+                
+                for($i=0;$i < 5;$i++){
+                    echo "['{$element_text[$i]}'" . "," . "{$element_count[$i]}],";
+                }
+            ?>
+          
+        ]);
+
+        var options = {
+          chart: {
+            title: '',
+            subtitle: '',
+          }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+    </script>
+  </head>
+  <body>
+    <div id="columnchart_material" style="width: 'auto'; height: 500px;"></div>
+                 </div>
 
             </div>
             <!-- /.container-fluid -->
