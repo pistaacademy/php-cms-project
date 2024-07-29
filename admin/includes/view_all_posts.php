@@ -1,6 +1,20 @@
+<form action="" method="post">
 <table class="table table-bordered table-hover">
+    <div class="col-xs-4" id="bulkOptionContainer">
+        <select name="" id="" class="form-control">
+            <option value="">Select Options</option>
+            <option value="">Publish</option>
+            <option value="">Draft</option>
+            <option value="">Delete</option>
+        </select>
+    </div>
+    <div class="col-xs-4">
+        <input type="submit" name="submit" class="btn btn-success" value="Apply">
+        <a href="add_post.php" class="btn btn-primary">Add New</a>
+    </div>
                             <thead>
                                 <tr>
+                                    <th><input type="checkbox" id="selectAllBoxes"></th>
                                     <th>ID</th>
                                     <th>Author</th>
                                     <th>Title</th>
@@ -28,6 +42,10 @@
                                         $post_date = $row['post_date'];
 
                                         echo "<tr>";
+                                        ?>
+                                        <td><input type="checkbox" class="checkBoxes" name="checkBoxArray[]" value='<?php echo $post_id; ?>'></td>
+                                        <?php
+
                                         echo "<td>$post_id</td>";
                                         echo "<td>$post_author</td>";
                                         echo "<td>$post_title</td>";
@@ -39,12 +57,7 @@
                                             $cat_title = $row['cat_title'];
                                             echo "<td>{$cat_title}</td>";
                                         }
-                                        
-
-
-
-
-
+                    
                                         echo "<td>$post_status</td>";
                                         echo "<td><img width='100' src='../admin/images/$post_image' alt='$post_title'></td>";
                                         echo "<td>$post_tags</td>";
@@ -57,6 +70,7 @@
                                 ?>
                             </tbody>
                         </table>
+                        </form>
 
 
 <?php 

@@ -29,7 +29,7 @@
 
                                
                             ?>
-                            <small><?php echo $_SESSION['username']; ?></small>
+                            
                             <h1 class="page-header">
                             Page Heading
                             <small>Secondary Text</small>
