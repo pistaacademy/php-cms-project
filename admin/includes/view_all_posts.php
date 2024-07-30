@@ -8,15 +8,23 @@
                     $query = "UPDATE posts SET post_status='{$bulk_options}' WHERE post_id={$postValueId}";
                     $update_to_published_status = mysqli_query($connection, $query);
                     break;
+                case 'draft':
+                    $query = "UPDATE posts SET post_status='{$bulk_options}' WHERE post_id={$postValueId}";
+                    $update_to_draft_status = mysqli_query($connection, $query);
+                    break;
+                case 'delete':
+                    $query = "DELETE FROM posts WHERE post_id={$postValueId}";
+                    $update_to_delete_status = mysqli_query($connection, $query);
+                    break;
             }
         }
     }
 ?>
 
 
-<form action="" method="post">
+<form class="post_filter_form" action="" method="post">
 <table class="table table-bordered table-hover">
-    <div class="col-xs-4" id="bulkOptionContainer">
+    <div class="col-xs-2" id="bulkOptionContainer">
         <select name="bulk_options" id="" class="form-control">
             <option value="">Select Options</option>
             <option value="published">Publish</option>
