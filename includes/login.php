@@ -22,19 +22,19 @@
             $db_user_firstname = $row['user_firstname'];
             $db_user_lastname = $row['user_lastname'];
             $db_user_role = $row['role'];
+            $salt = $row['randSalt'];
         }
+
+        $password = crypt($password, $salt);
        
-        if ($username === $db_username && $password === $db_user_password) {
+        if ($username == $db_username && $password == $db_user_password) {
 
             $_SESSION['username'] = $db_username;
             $_SESSION['firstname'] = $db_user_firstname;
             $_SESSION['lastname'] = $db_user_lastname;
             $_SESSION['user_role'] = $db_user_role;
-
             header("Location: ../admin/index.php");
-
-
-
+            
         } else {
             header("Location: ../index.php");
         }
