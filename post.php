@@ -81,6 +81,8 @@
                             } else {
                                 echo "<script>alert('Please Fill all Fields...')</script>";
                             }
+
+                            header("Location: post.php?p_id=$the_post_id");
                     }
                 ?>
 
