@@ -14,7 +14,14 @@
             <div class="col-md-8">
 
             <?php 
-                        $query = "SELECT * FROM posts";
+
+            $post_query_count = "SELECT * FROM posts";
+            $find_count = mysqli_query($connection, $post_query_count);
+            $count = mysqli_num_rows($find_count);
+
+            $count = ceil($count / 5);
+
+                        $query = "SELECT * FROM posts LIMIT 5,10";
                         $select_all_posts_query = mysqli_query($connection, $query);
                         while($row = mysqli_fetch_assoc($select_all_posts_query)){
                             $post_id = $row['post_id'];
@@ -64,5 +71,13 @@
         <!-- /.row -->
 
         <hr>
+
+        <ul class="pager">
+           <?php 
+                for($i=1;$i <= $count; $i++){
+                    echo "<li><a href='index.php?page={$i}'>{$i}</a></li>";
+                }
+           ?>
+        </ul>
 
 <?php include "includes/footer.php"; ?>
