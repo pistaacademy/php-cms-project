@@ -26,3 +26,13 @@ $(document).ready(function() {
   $('#load-screen').delay(400).fadeOut(500, function(){
     $(this).remove();
   });
+
+  function loadUsersOnline() {
+    $.get("functions.php?onlineusers=result", function(data){
+        $(".usersonline").text(data);
+    })
+  }
+
+  setInterval(function(){
+    loadUsersOnline();
+  },500);
